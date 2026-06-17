@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1038667862120",
+    "project_id": "raillive-ce547",
+    "storage_bucket": "raillive-ce547.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1038667862120:android:5276d9873b314a998c2bdd",
+        "android_client_info": {
+          "package_name": "com.example.rail_live"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDYzA3EF8BBtS3I_B4XvAZ-er-KOvec4M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
