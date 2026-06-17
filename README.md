@@ -90,8 +90,8 @@ flowchart LR
 | Tab | Description | Status |
 |:---:|:---|:---:|
 | 🏠 **Home** | Train search, autocomplete & recent lookups | ✅ Ready |
-| 📍 **Tracking** | Dedicated tracking view | 🚧 Coming soon |
-| 💬 **Chat** | Global chat hub | 🚧 Coming soon |
+| 📍 **Tracking** | Dedicated tracking view | ✅ Ready |
+| 💬 **Chat** | Global chat hub | ✅ Ready |
 | 🎫 **PNR** | PNR lookup with search history | ✅ Ready |
 | 👤 **Profile** | User profile via Firestore | ✅ Ready |
 
