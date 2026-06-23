@@ -5,8 +5,8 @@ class RailLiveColors {
   RailLiveColors._();
 
   // ── Primary (Navy → Sky Blue) ──────────────
-  static const Color primary        = Color(0xFF0A2463); // --p
-  static const Color primary2       = Color(0xFF1565C0); // --p2
+  static const Color primary2        = Color(0xFF0A2463); // --p2
+  static const Color primary       = Color(0xFF1565C0); // --p
   static const Color primary3       = Color(0xFF1E88E5); // --p3
   static const Color primary4       = Color(0xFFE3F2FD); // --p4  (light tint)
 

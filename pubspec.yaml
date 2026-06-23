@@ -43,8 +43,16 @@ dependencies:
   shared_preferences: ^2.5.5
   intl: ^0.20.2
   flutter_dotenv: ^6.0.1
-  flutter_local_notifications: ^22.0.0
+
   firebase_messaging: ^16.3.0
+  geolocator: ^14.0.3
+  permission_handler: ^12.0.3
+  package_info_plus: ^10.1.0
+  flutter_local_notifications: ^22.0.1
+  url_launcher: ^6.3.2
+  flutter_map: ^8.3.0
+  latlong2: ^0.9.1
+  razorpay_flutter: ^1.4.5
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +80,7 @@ flutter:
   assets:
      - assets/
      - assets/data/trains.json
+     - assets/data/stations.json
      - .env
      - assets/onboarding/img3.png
      - assets/onboarding/rail_bg.png

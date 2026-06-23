@@ -70,4 +70,46 @@ class TrainUtils {
 
     return value.isNotEmpty && value != '--';
   }
+
+  static String? getHaltTime(Map<String, dynamic> station) {
+    final candidates = [
+      station['haltTime'],
+      station['halt_time'],
+      station['halt'],
+      station['haltDuration'],
+      station['halt_duration'],
+      station['stopTime'],
+      station['stop_time'],
+    ];
+
+    for (final val in candidates) {
+      if (val != null) {
+        final str = val.toString().trim();
+        if (str.isNotEmpty && str != '0' && str != '--' && str != 'null') {
+          return str;
+        }
+      }
+    }
+
+    final arr = parseTime(station['arrivalTime']?.toString());
+    final dep = parseTime(station['departureTime']?.toString());
+    if (arr != null && dep != null) {
+      final diff = dep.difference(arr).inMinutes;
+      if (diff > 0) return diff.toString();
+    }
+
+    return null;
+  }
+
+  static String formatDuration(String? depRaw, String? arrRaw) {
+    final dep = parseTime(depRaw);
+    final arr = parseTime(arrRaw);
+    if (dep == null || arr == null) return '--';
+
+    int mins = arr.difference(dep).inMinutes;
+    if (mins < 0) mins += 24 * 60;
+    final h = mins ~/ 60;
+    final m = mins % 60;
+    return m == 0 ? '${h}h' : '${h}h ${m}m';
+  }
 }

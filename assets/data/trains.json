@@ -1,5 +1,521 @@
 [
   {
+    "train_number": "50103",
+    "train_name": "DIVA-RATNAGIRI PASS",
+    "running_days": {
+      "monday": true,
+      "tuesday": true,
+      "wednesday": true,
+      "thursday": true,
+      "friday": true,
+      "saturday": true,
+      "sunday": true
+    },
+    "stops": [
+      "Diva Junction",
+      "Panvel",
+      "Apta",
+      "Jite",
+      "Pen",
+      "Kasu",
+      "Nagothane",
+      "Roha",
+      "Kolad",
+      "Indapur",
+      "Mangaon",
+      "Goregaon Road",
+      "Veer",
+      "Sape Wamne",
+      "Karanjadi",
+      "Vinhere",
+      "Diwan Khavati",
+      "Kalambani Budruk",
+      "Khed",
+      "Anjani",
+      "Chiplun",
+      "Kamathe",
+      "Savarda",
+      "Aravali Road",
+      "Kadavai",
+      "Sangmeshwar Road",
+      "Ukshi",
+      "Bhoke",
+      "Ratnagiri"
+    ]
+  },
+  {
+    "train_number": "50104",
+    "train_name": "RN Diva PASS",
+    "running_days": {
+      "monday": true,
+      "tuesday": true,
+      "wednesday": true,
+      "thursday": true,
+      "friday": true,
+      "saturday": true,
+      "sunday": true
+    },
+    "stops": [
+      "Ratnagiri",
+      "Bhoke",
+      "Ukshi",
+      "Sangmeshwar Road",
+      "Kadavai",
+      "Aravali Road",
+      "Savarda",
+      "Kamathe",
+      "Chiplun",
+      "Anjani",
+      "Khed",
+      "Kalambani Budruk",
+      "Diwan Khavati",
+      "Vinhere",
+      "Karanjadi",
+      "Sape Wamne",
+      "Veer",
+      "Goregaon Road",
+      "Mangaon",
+      "Indapur",
+      "Kolad",
+      "Roha",
+      "Nagothane",
+      "Kasu",
+      "Pen",
+      "Jite",
+      "Apta",
+      "Panvel",
+      "Diva Junction"
+    ]
+  },
+  {
+    "train_number": "10106",
+    "train_name": "Sindhudurg Express ",
+    "running_days": {
+      "monday": true,
+      "tuesday": true,
+      "wednesday": true,
+      "thursday": true,
+      "friday": true,
+      "saturday": true,
+      "sunday": true
+    },
+    "stops": [
+      "Sawantwadi Road",
+      "Zarap",
+      "Kudal",
+      "Sindhudurg",
+      "kankavali",
+      "Nandgaon Road",
+      "Achirne",
+      "Vaibhavwadi Road",
+      "Kharepatan Road",
+      "Rajapur Road",
+      "Saundal",
+      "Vilavade",
+      "Veravali",
+      "Adavali",
+      "Nivsar",
+      "Ratnagiri",
+      "Sangmeshwar Road",
+      "Aravali Road",
+      "Savarda",
+      "Chiplun",
+      "Anjani",
+      "Khed",
+      "Vinhere",
+      "Karanjadi",
+      "Sape Wamne",
+      "Veer",
+      "Goregaon Road",
+      "Mangaon",
+      "Kolad",
+      "Roha",
+      "Pen",
+      "Jite",
+      "Apta",
+      "Panvel",
+      "Kalamboli Goods Shed",
+      "Diva Junction"
+    ]
+  },
+
+  {
+    "train_number": "10105",
+    "train_name": "Sindhudurg Express",
+    "running_days": {
+      "monday": true,
+      "tuesday": true,
+      "wednesday": true,
+      "thursday": true,
+      "friday": true,
+      "saturday": true,
+      "sunday": true
+    },
+    "stops": [
+      "Diva Junction",
+      "Kalamboli Goods Shed",
+      "Panvel",
+      "Apta",
+      "Jite",
+      "Pen",
+      "Roha",
+      "Kolad",
+      "Mangaon",
+      "Goregaon Road",
+      "Veer",
+      "Sape Wamne",
+      "Karanjadi",
+      "Vinhere",
+      "Khed",
+      "Anjani",
+      "Chiplun",
+      "Savarda",
+      "Aravali Road",
+      "Sangmeshwar Road",
+      "Ratnagiri",
+      "Nivsar",
+      "Adavali",
+      "Veravali",
+      "Vilavade",
+      "Saundal",
+      "Rajapur Road",
+      "Kharepatan Road",
+      "Vaibhavwadi Road",
+      "Achirne",
+      "Nandgaon Road",
+      "Kankavali",
+      "Sindhudurg",
+      "Kudal",
+      "Zarap",
+      "Sawantwadi Road"
+    ]
+  },
+
+  {
+    "train_number": "20111",
+    "train_name": "Konkan Kanya Express",
+    "running_days": {
+      "monday": true,
+      "tuesday": true,
+      "wednesday": true,
+      "thursday": true,
+      "friday": true,
+      "saturday": true,
+      "sunday": true
+    },
+    "stops": [
+      "CSMT",
+      "Dadar",
+      "Thane",
+      "Panvel",
+      "Khed",
+      "Chiplun",
+      "Sangmeshwar Road",
+      "Ratnagiri",
+      "Vilavade",
+      "Rajapur Road",
+      "Vaibhavwadi Road",
+      "Kankavali",
+      "Sindhudurg",
+      "Kudal",
+      "Sawantwadi Road",
+      "Pernem",
+      "Thivim",
+      "Karmali",
+      "Madgaon Junction"
+    ]
+  },
+
+  {
+    "train_number": "20112",
+    "train_name": "Konkan Kanya Express",
+    "running_days": {
+      "monday": true,
+      "tuesday": true,
+      "wednesday": true,
+      "thursday": true,
+      "friday": true,
+      "saturday": true,
+      "sunday": true
+    },
+    "stops": [
+      "Madgaon Junction",
+      "Karmali",
+      "Thivim",
+      "Pernem",
+      "Sawantwadi Road",
+      "Kudal",
+      "Sindhudurg",
+      "Kankavali",
+      "Vaibhavwadi Road",
+      "Rajapur Road",
+      "Vilavade",
+      "Ratnagiri",
+      "Sangmeshwar Road",
+      "Chiplun",
+      "Khed",
+      "Panvel",
+      "Thane",
+      "Dadar",
+      "CSMT"
+    ]
+  },
+  {
+    "train_number": "22114",
+    "train_name": "Kochuveli - LTT SF Express",
+    "running_days": {
+      "monday": true,
+      "tuesday": false,
+      "wednesday": false,
+      "thursday": true,
+      "friday": false,
+      "saturday": false,
+      "sunday": false
+    },
+    "stops": [
+      "Kochuveli",
+      "Kollam Junction",
+      "Kayamkulam Junction",
+      "Chengannur",
+      "Tiruvalla",
+      "Kottayam",
+      "Ernakulam Town",
+      "Thrissur",
+      "Shoranur Junction",
+      "Tirur",
+      "Kozhikode",
+      "Thalassery",
+      "Kannur",
+      "Kasaragod",
+      "Mangaluru Junction",
+      "Udupi",
+      "Kundapura",
+      "Bhatkal",
+      "Karwar",
+      "Madgaon Junction",
+      "Pernem",
+      "Sindhudurg",
+      "Ratnagiri",
+      "Chiplun",
+      "Khed",
+      "Panvel",
+      "Thane",
+      "Lokmanya Tilak Terminus"
+    ]
+  },
+  {
+    "train_number": "19058",
+    "train_name": "Bhavnagar Express",
+    "running_days": {
+      "monday": true,
+      "tuesday": true,
+      "wednesday": true,
+      "thursday": true,
+      "friday": true,
+      "saturday": true,
+      "sunday": true
+    },
+    "stops": [
+      "Bhavnagar Terminus",
+      "Botad Junction",
+      "Surendranagar",
+      "Viramgam Junction",
+      "Ahmedabad Junction",
+      "Nadiad Junction",
+      "Vadodara Junction",
+      "Bharuch Junction",
+      "Surat",
+      "Vapi",
+      "Valsad",
+      "Borivali",
+      "Mumbai Central"
+    ]
+  },
+  {
+    "train_number": "16346",
+    "train_name": "Netravati Express",
+    "running_days": {
+      "monday": true,
+      "tuesday": true,
+      "wednesday": true,
+      "thursday": true,
+      "friday": true,
+      "saturday": true,
+      "sunday": true
+    },
+    "stops": [
+      "Thiruvananthapuram Central",
+      "Kollam Junction",
+      "Kayamkulam Junction",
+      "Alappuzha",
+      "Ernakulam Junction",
+      "Thrissur",
+      "Shoranur Junction",
+      "Kozhikode",
+      "Kannur",
+      "Kasaragod",
+      "Mangaluru Junction",
+      "Udupi",
+      "Kundapura",
+      "Bhatkal",
+      "Karwar",
+      "Madgaon Junction",
+      "Thivim",
+      "Sawantwadi Road",
+      "Kankavali",
+      "Ratnagiri",
+      "Chiplun",
+      "Khed",
+      "Panvel",
+      "Thane",
+      "Lokmanya Tilak Terminus"
+    ]
+  },
+  {
+    "train_number": "12617",
+    "train_name": "Mangala Lakshadweep Express",
+    "running_days": {
+      "monday": true,
+      "tuesday": true,
+      "wednesday": true,
+      "thursday": true,
+      "friday": true,
+      "saturday": true,
+      "sunday": true
+    },
+    "stops": [
+      "Ernakulam Junction",
+      "Aluva",
+      "Thrissur",
+      "Shoranur Junction",
+      "Tirur",
+      "Kozhikode",
+      "Kannur",
+      "Kasaragod",
+      "Mangaluru Junction",
+      "Udupi",
+      "Kundapura",
+      "Bhatkal",
+      "Karwar",
+      "Madgaon Junction",
+      "Thivim",
+      "Kudal",
+      "Kankavali",
+      "Ratnagiri",
+      "Chiplun",
+      "Khed",
+      "Panvel",
+      "Vasai Road",
+      "Surat",
+      "Vadodara",
+      "Ratlam",
+      "Kota",
+      "Mathura Junction",
+      "Hazrat Nizamuddin"
+    ]
+  },
+  {
+    "train_number": "11204",
+    "train_name": "Madgaon Nagpur Express",
+    "running_days": {
+      "monday": false,
+      "tuesday": false,
+      "wednesday": false,
+      "thursday": true,
+      "friday": false,
+      "saturday": false,
+      "sunday": true
+    },
+    "stops": [
+      "Madgaon Junction",
+      "Karmali",
+      "Thivim",
+      "Sawantwadi Road",
+      "Kudal",
+      "Sindhudurg",
+      "Kankavali",
+      "Vaibhavwadi Road",
+      "Rajapur Road",
+      "Ratnagiri",
+      "Sangmeshwar Road",
+      "Chiplun",
+      "Khed",
+      "Mangaon",
+      "Roha",
+      "Panvel",
+      "Kalyan",
+      "Nashik Road",
+      "Bhusaval Junction",
+      "Akola Junction",
+      "Badnera Junction",
+      "Wardha Junction",
+      "Nagpur"
+    ]
+  },
+  {
+    "train_number": "20111",
+    "train_name": "Konkan Kanya Express",
+    "stops": [
+      "CSMT",
+      "Dadar",
+      "Thane",
+      "Panvel",
+      "Khed",
+      "Chiplun",
+      "Sangmeshwar Road",
+      "Ratnagiri",
+      "Vilavade",
+      "Rajapur Road",
+      "Vaibhavwadi Road",
+      "Kankavali",
+      "Sindhudurg",
+      "Kudal",
+      "Sawantwadi Road",
+      "Pernem",
+      "Thivim",
+      "Karmali",
+      "Madgaon Junction"
+    ]
+  },
+  {
+  "train_number": "11204",
+  "train_name": "Madgaon Nagpur Express",
+  "running_days": {
+    "monday": false,
+    "tuesday": false,
+    "wednesday": false,
+    "thursday": true,
+    "friday": false,
+    "saturday": false,
+    "sunday": true
+  },
+  "stops": [
+    "Madgaon Junction",
+    "Karmali",
+    "Thivim",
+    "Sawantwadi Road",
+    "Kudal",
+    "Sindhudurg",
+    "Kankavali",
+    "Vaibhavwadi Road",
+    "Rajapur Road",
+    "Ratnagiri",
+    "Sangmeshwar Road",
+    "Chiplun",
+    "Khed",
+    "Mangaon",
+    "Roha",
+    "Panvel",
+    "Kalyan",
+    "Nashik Road",
+    "Bhusaval Junction",
+    "Akola Junction",
+    "Badnera Junction",
+    "Wardha Junction",
+    "Nagpur"
+  ]
+},
+  {
     "train_number": "00851",
     "train_name": "BNC SUVIDHA SPL"
   },
@@ -555,10 +1071,7 @@
     "train_number": "11003",
     "train_name": "RAJYA RANI EXP"
   },
-  {
-    "train_number": "11004",
-    "train_name": "RAJYA RANI EXP"
-  },
+
   {
     "train_number": "11005",
     "train_name": "PUDUCHERRY EXP"
@@ -987,10 +1500,7 @@
     "train_number": "11203",
     "train_name": "NGP JAIPUR EXP"
   },
-  {
-    "train_number": "11204",
-    "train_name": "JP NGP EXP"
-  },
+
   {
     "train_number": "11205",
     "train_name": "LTT NZB EXPRESS"
@@ -3355,10 +3865,7 @@
     "train_number": "12616",
     "train_name": "G T EXPRESS"
   },
-  {
-    "train_number": "12617",
-    "train_name": "MANGALA LDWEEP"
-  },
+
   {
     "train_number": "12618",
     "train_name": "MNGLA LKSDP EXP"
@@ -6935,10 +7442,7 @@
     "train_number": "16333",
     "train_name": "VRL TVC EXPRESS"
   },
-  {
-    "train_number": "16334",
-    "train_name": "VERAVAL EXPRESS"
-  },
+
   {
     "train_number": "16335",
     "train_name": "NAGERCOIL EXP"
@@ -6983,10 +7487,7 @@
     "train_number": "16345",
     "train_name": "NETRAVATI EXP"
   },
-  {
-    "train_number": "16346",
-    "train_name": "NETRAVATHI EXP"
-  },
+
   {
     "train_number": "16347",
     "train_name": "MANGALORE EXP"
@@ -8631,10 +9132,7 @@
     "train_number": "19057",
     "train_name": "UDN VARANASI EX"
   },
-  {
-    "train_number": "19058",
-    "train_name": "BSB UDN EXP"
-  },
+
   {
     "train_number": "19059",
     "train_name": "JAMNAGAR INTCIT"
@@ -9235,10 +9733,7 @@
     "train_number": "22113",
     "train_name": "LTT KCVL EXPRES"
   },
-  {
-    "train_number": "22114",
-    "train_name": "KCVL LTT SF EXP"
-  },
+
   {
     "train_number": "22115",
     "train_name": "LTT KRMI AC SUP"
@@ -10171,10 +10666,7 @@
     "train_number": "22905",
     "train_name": "OKHA HOWRAH EXP"
   },
-  {
-    "train_number": "22907",
-    "train_name": "MAO HAPA SUP EX"
-  },
+
   {
     "train_number": "22908",
     "train_name": "HAPA MADGAON EX"
@@ -10391,22 +10883,7 @@
     "train_number": "29060",
     "train_name": "SURAT INTERCITY"
   },
-  {
-    "train_number": "50103",
-    "train_name": "RATNAGIRI PASS"
-  },
-  {
-    "train_number": "50104",
-    "train_name": "RN DADAR PASS"
-  },
-  {
-    "train_number": "50105",
-    "train_name": "DIVA SWV PASS"
-  },
-  {
-    "train_number": "50106",
-    "train_name": "SWV DIVA PASS"
-  },
+
   {
     "train_number": "51027",
     "train_name": "FAST PASSENGER"

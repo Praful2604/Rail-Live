@@ -7,4 +7,6 @@ class Env {
   static String get rapidPnrApiKey => dotenv.env['RAPID_PNP_API']??'';
   static String trainSearchUrl(String trainNo) =>
       'https://$rapidApiHost/api/trains-search/v1/train/$trainNo';
+
+  static String get razorpayKeyId    => dotenv.env['RAZORPAY_KEY_ID'] ?? '';
 }

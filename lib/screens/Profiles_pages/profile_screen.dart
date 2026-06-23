@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:rail_live/app_constant.dart';
 
+import '../setting_pages/setting_screen.dart';
 import 'edit_profile_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -19,9 +20,7 @@ class ProfileScreen extends StatelessWidget {
             .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const Center(child: CircularProgressIndicator());
           }
 
           final user = snapshot.data!.data() as Map<String, dynamic>;
@@ -29,6 +28,17 @@ class ProfileScreen extends StatelessWidget {
           return CustomScrollView(
             slivers: [
               SliverAppBar(
+                actions: [Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: IconButton(onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const SettingsScreen()),
+                    );
+                  },
+                            icon:  Icon(Icons.settings, color: RailLiveColors.warning, size: 28)),
+                )
+          ],
                 expandedHeight: 260,
                 pinned: true,
                 elevation: 0,
@@ -57,10 +67,10 @@ class ProfileScreen extends StatelessWidget {
                                 : null,
                             child: user["photoUrl"] == null
                                 ? const Icon(
-                              Icons.person,
-                              size: 50,
-                              color: RailLiveColors.primary,
-                            )
+                                    Icons.person,
+                                    size: 50,
+                                    color: RailLiveColors.primary,
+                                  )
                                 : null,
                           ),
                           const SizedBox(height: 12),
@@ -75,9 +85,7 @@ class ProfileScreen extends StatelessWidget {
                           const SizedBox(height: 4),
                           Text(
                             user["email"] ?? "",
-                            style: const TextStyle(
-                              color: Colors.white70,
-                            ),
+                            style: const TextStyle(color: Colors.white70),
                           ),
                         ],
                       ),
@@ -91,7 +99,6 @@ class ProfileScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(16),
                   child: Column(
                     children: [
-
                       /// Stats
                       Row(
                         children: [
@@ -117,22 +124,14 @@ class ProfileScreen extends StatelessWidget {
 
                       const SizedBox(height: 20),
 
-                      _menuTile(
-                        Icons.edit,
-                        "Edit Profile",
-                            () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => EditProfileScreen(
-                                userData: user,
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-
-
+                      _menuTile(Icons.edit, "Edit Profile", () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => EditProfileScreen(userData: user),
+                          ),
+                        );
+                      }),
 
                       const SizedBox(height: 20),
 
@@ -155,45 +154,29 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _statCard(
-      String title,
-      String value,
-      IconData icon,
-      Color bg,
-      ) {
+  Widget _statCard(String title, String value, IconData icon, Color bg) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: RailLiveColors.surface,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(
-          color: RailLiveColors.border,
-        ),
+        border: Border.all(color: RailLiveColors.border),
       ),
       child: Column(
         children: [
-          CircleAvatar(
-            backgroundColor: bg,
-            child: Icon(icon),
-          ),
+          CircleAvatar(backgroundColor: bg, child: Icon(icon)),
           const SizedBox(height: 10),
           Text(
             value,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 22,
-            ),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
           ),
           Text(title),
         ],
       ),
     );
   }
-  Widget _menuTile(
-      IconData icon,
-      String title,
-      VoidCallback onTap,
-      ) {
+
+  Widget _menuTile(IconData icon, String title, VoidCallback onTap) {
     return Card(
       child: ListTile(
         onTap: onTap,

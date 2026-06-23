@@ -5,7 +5,8 @@ import 'package:rail_live/screens/Profiles_pages/profile_screen.dart';
 
 import '../../Providers/train_provider.dart';
 import '../Profiles_pages/edit_profile_screen.dart';
-import '../train_details_screen.dart';
+import '../train_details/train_details_screen.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -62,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        backgroundColor: RailLiveColors.primary2,
+        backgroundColor: RailLiveColors.primary,
         foregroundColor: Colors.white,
         leading: const Icon(Icons.directions_railway_filled),
         title: const Column(
