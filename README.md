@@ -4,15 +4,15 @@
 
 ### *Real-Time Railways at Your Fingertips*
 
-Track live train locations · Monitor delays · Check PNR · Chat with fellow passengers
+Track live trains · Check PNR · Chat with passengers · Order food at your seat
 
 <br/>
 
 ![Flutter](https://img.shields.io/badge/Flutter-3.12+-02569B?style=for-the-badge&logo=flutter&logoColor=white)
 ![Dart](https://img.shields.io/badge/Dart-3.12+-0175C2?style=for-the-badge&logo=dart&logoColor=white)
 ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
-![Provider](https://img.shields.io/badge/Provider-State_Management-1565C0?style=for-the-badge)
-![Platform](https://img.shields.io/badge/Platform-Android_%7C_iOS-0A2463?style=for-the-badge)
+![Razorpay](https://img.shields.io/badge/Razorpay-02042B?style=for-the-badge&logo=razorpay&logoColor=white)
+![Google Maps](https://img.shields.io/badge/Maps-4285F4?style=for-the-badge&logo=googlemaps&logoColor=white)
 
 <br/>
 
@@ -28,7 +28,7 @@ Track live train locations · Monitor delays · Check PNR · Chat with fellow pa
 
 ## 📖 About
 
-**RailLive** is a Flutter mobile app built for Indian Railways travelers. Search any train by number or name, follow its live journey station-by-station, check your PNR booking status, and join a real-time chat room with other passengers on the same train — all in one place.
+**RailLive** is a comprehensive Flutter mobile app built for Indian Railways travelers. Search any train by number or name, follow its live journey station-by-station with integrated maps, check your PNR booking status, order delicious meals directly to your seat, and join a real-time chat room with fellow passengers on the same train — all in one place.
 
 > 🎯 **Mission** — Make railway travel smarter, simpler, and more connected.
 
@@ -41,25 +41,25 @@ Track live train locations · Monitor delays · Check PNR · Chat with fellow pa
 <td width="50%" valign="top">
 
 ### 🔍 Train Search
-Search by **5-digit train number** or **train name** with instant autocomplete powered by a local `trains.json` database. Recent searches are saved for quick access.
+Search by **5-digit train number** or **train name** with instant autocomplete. Find trains between any two stations with ease.
 
-### 📡 Live Status
-Real-time station-by-station tracking with **delay info**, **ETA**, and **auto-refresh every 60 seconds** via the IRCTC RapidAPI.
+### 📡 Live Status & Maps
+Real-time station-by-station tracking with **delay info**, **ETA**, and **interactive maps** powered by `flutter_map`.
 
 ### 🎫 PNR Status
-Look up booking status instantly. View coach, berth, and charting details. **Last 10 searches** are saved locally.
+Look up booking status instantly. View coach position, berth details, and charting status.
 
 </td>
 <td width="50%" valign="top">
 
+### 🍱 Food Delivery
+Browse **nearby restaurants** at upcoming stations. Order food directly to your seat with secure **Razorpay** integration.
+
 ### 💬 Train Chat
-Per-train chat rooms powered by **Cloud Firestore** — connect with fellow passengers directly from the train detail screen.
+Per-train chat rooms powered by **Cloud Firestore** — connect with fellow passengers on your journey.
 
-### 👤 Profile
-Firebase-authenticated user profiles stored in Firestore with photo, name, and email — fully editable.
-
-### 🔔 Notifications
-Push notifications via **Firebase Cloud Messaging** with local notification support on Android.
+### 👤 Profile & Orders
+Manage your profile and track your food orders. Firebase-authenticated with real-time updates.
 
 </td>
 </tr>
@@ -76,11 +76,13 @@ flowchart LR
     C --> D[🏠 Home]
     C --> E[📍 Tracking]
     C --> F[💬 Chat]
-    C --> G[🎫 PNR]
+    C --> G[🍱 Food]
     C --> H[👤 Profile]
     D --> I[Train Details]
-    I --> J[Live Status]
+    I --> J[Live Status & Map]
     I --> K[Train Chat]
+    G --> L[Restaurant Details]
+    L --> M[Razorpay Payment]
 ```
 
 <br/>
@@ -90,12 +92,10 @@ flowchart LR
 | Tab | Description | Status |
 |:---:|:---|:---:|
 | 🏠 **Home** | Train search, autocomplete & recent lookups | ✅ Ready |
-| 📍 **Tracking** | Dedicated tracking view | ✅ Ready |
-| 💬 **Chat** | Global chat hub | ✅ Ready |
-| 🎫 **PNR** | PNR lookup with search history | ✅ Ready |
-| 👤 **Profile** | User profile via Firestore | ✅ Ready |
-
-> 💡 **Tip** — Live tracking and per-train chat are available from **Home → Train Result → Train Detail Screen**.
+| 📍 **Tracking** | Dedicated tracking view with maps | ✅ Ready |
+| 💬 **Chat** | Global and per-train chat hub | ✅ Ready |
+| 🍱 **Food** | Nearby restaurants and food ordering | ✅ Ready |
+| 👤 **Profile** | User profile & order history | ✅ Ready |
 
 <br/>
 
@@ -120,23 +120,22 @@ flutter run
 | Requirement | Details |
 |:---|:---|
 | **Flutter SDK** | [Install Flutter](https://docs.flutter.dev/get-started/install) — Dart `^3.12.1` |
-| **Firebase Project** | Auth (Email + Phone) · Firestore · Cloud Messaging |
-| **RapidAPI Keys** | [IRCTC Train API](https://rapidapi.com/indian-railway-irctc/api/indian-railway-irctc) · [PNR Status API](https://rapidapi.com/indian-railway-irctc/api/irctc-indian-railway-pnr-status) |
+| **Firebase Project** | Auth · Firestore · Cloud Messaging |
+| **RapidAPI Keys** | IRCTC Train API · PNR Status API |
+| **Razorpay API** | Merchant ID & Key for payments |
 
 <br/>
 
 ### 2️⃣ Environment Variables
 
-Create a `.env` file in the project root *(gitignored — never commit real keys)*:
+Create a `.env` file in the project root:
 
 ```env
 RAPID_API_KEY=your_rapidapi_key
 RAPID_API_HOST=indian-railway-irctc.p.rapidapi.com
-RAPID_API=your_rapidapi_subscription_header_value
 RAPID_PNP_API=your_pnr_api_key
+RAZORPAY_KEY=your_razorpay_key
 ```
-
-These map to `lib/config/env.dart`.
 
 <br/>
 
@@ -152,44 +151,22 @@ flutterfire configure
 
 <br/>
 
-### 4️⃣ Run
-
-```bash
-flutter run
-```
-
-> By default, the app launches the **onboarding flow** (`Screen1`). To skip straight to login, set `MaterialApp` home to `AuthScreen()` in `lib/main.dart`.
-
-<br/>
-
 ---
 
 ## 🏗️ Architecture
 
 ### Tech Stack
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                      RailLive App                       │
-├──────────────┬──────────────────┬───────────────────────┤
-│   UI Layer   │   State Layer    │     Data Layer        │
-│  Flutter UI  │    Provider      │   RapidAPI (HTTP)     │
-│  Material 3  │  ChangeNotifier  │   Firebase Firestore  │
-│  Curved Nav  │                  │   SharedPreferences   │
-└──────────────┴──────────────────┴───────────────────────┘
-```
-
 | Layer | Package |
 |:---|:---|
 | Framework | Flutter · Dart `^3.12.1` |
 | State | [`provider`](https://pub.dev/packages/provider) |
-| Auth | [`firebase_auth`](https://pub.dev/packages/firebase_auth) · [`firebase_auth_kit`](https://pub.dev/packages/firebase_auth_kit) |
-| Database | Cloud Firestore |
-| HTTP | [`http`](https://pub.dev/packages/http) |
-| Config | [`flutter_dotenv`](https://pub.dev/packages/flutter_dotenv) |
-| Storage | [`shared_preferences`](https://pub.dev/packages/shared_preferences) |
-| Notifications | [`firebase_messaging`](https://pub.dev/packages/firebase_messaging) · [`flutter_local_notifications`](https://pub.dev/packages/flutter_local_notifications) |
-| UI | Material Design · [`curved_navigation_bar`](https://pub.dev/packages/curved_navigation_bar) |
+| Maps | [`flutter_map`](https://pub.dev/packages/flutter_map) · [`latlong2`](https://pub.dev/packages/latlong2) |
+| Payments | [`razorpay_flutter`](https://pub.dev/packages/razorpay_flutter) |
+| Location | [`geolocator`](https://pub.dev/packages/geolocator) |
+| Auth | [`firebase_auth`](https://pub.dev/packages/firebase_auth) |
+| Database | Cloud Firestore · SharedPreferences |
+| Notifications | [`firebase_messaging`](https://pub.dev/packages/firebase_messaging) |
 
 <br/>
 
@@ -199,36 +176,26 @@ flutter run
 rail_live/
 │
 ├── 📁 lib/
-│   ├── main.dart                    # Entry · Firebase init · Providers
-│   ├── bottom_navigation_bar.dart   # 5-tab shell
-│   ├── app_constant.dart            # Theme & color palette
-│   │
-│   ├── 📁 config/
-│   │   └── env.dart                 # .env accessors
-│   │
-│   ├── 📁 Providers/
-│   │   ├── train_provider.dart      # Search · live status · recents
-│   │   ├── pnr_provider.dart        # PNR lookup · history
-│   │   ├── live_status_provider.dart
-│   │   └── clock_provider.dart
-│   │
-│   ├── 📁 services/
-│   │   └── train_live_service.dart
-│   │
-│   ├── 📁 models/
-│   │   └── train_model.dart
+│   ├── 📁 Providers/                # State management
+│   ├── 📁 services/                 # API & Firebase logic
+│   ├── 📁 models/                   # Data structures
+│   ├── 📁 utils/                    # Helper classes (Coach, Station)
 │   │
 │   └── 📁 screens/
 │       ├── auth_screen.dart
-│       ├── train_details_screen.dart
-│       ├── train_chat_screen.dart
-│       ├── onboarding_screens/      # screen1 → screen4
-│       ├── Bottom_NavigationBar_screens/
-│       └── Profiles_pages/
+│       ├── 📁 restaurant/           # Food ordering flow
+│       ├── 📁 onboarding_screens/   
+│       ├── 📁 Profiles_pages/       # Profile & Settings
+│       └── 📁 Bottom_NavigationBar_screens/
+│           ├── home_screen.dart
+│           ├── tracking_screen.dart
+│           ├── pnr_screen.dart
+│           ├── nearby_restaurant_screen.dart
+│           └── 📁 train_between_stations/
 │
 └── 📁 assets/
-    ├── data/trains.json             # Local train index
-    └── onboarding/                  # Onboarding artwork
+    ├── 📁 data/                     # local trains & stations JSON
+    └── 📁 onboarding/               
 ```
 
 <br/>
@@ -243,42 +210,6 @@ rail_live/
 | `GET /api/trains/v1/train/status` | `indian-railway-irctc.p.rapidapi.com` | Live running status |
 | `GET /getPNRStatus/{pnr}` | `irctc-indian-railway-pnr-status.p.rapidapi.com` | PNR booking status |
 
-All requests require `x-rapidapi-key` and `x-rapidapi-host` headers.
-
-<br/>
-
----
-
-## 📦 Build for Release
-
-```bash
-# Android APK
-flutter build apk --release
-
-# Android App Bundle (Play Store)
-flutter build appbundle --release
-
-# iOS (macOS required)
-flutter build ios --release
-```
-
-<br/>
-
----
-
-## 🎨 Design System
-
-RailLive uses a consistent navy-to-sky-blue palette defined in `app_constant.dart`:
-
-| Token | Color | Usage |
-|:---|:---:|:---|
-| `primary` | `#0A2463` | Headers, nav bar |
-| `primary2` | `#1565C0` | Accents, buttons |
-| `success` | `#00897B` | Confirmed / on-time |
-| `warning` | `#E65100` | Waitlist / delays |
-| `error` | `#C62828` | Cancelled / errors |
-| `background` | `#F0F4FF` | Page background |
-
 <br/>
 
 ---
@@ -291,6 +222,6 @@ RailLive uses a consistent navy-to-sky-blue palette defined in `app_constant.dar
 
 <br/>
 
-**RailLive** · Flutter · Firebase · RapidAPI
+**RailLive** · Flutter · Firebase · RapidAPI · Razorpay
 
 </div>
