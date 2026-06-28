@@ -46,7 +46,7 @@ class StatusSummaryCard extends StatelessWidget {
                     Text(
                       provider.liveIsOnTime
                           ? 'On Time'
-                          : '$provider.liveCurrentDelayText min',
+                          : '${provider.liveCurrentDelayText} min',
                       style: TextStyle(
                           color: provider.liveIsOnTime
                               ? RailLiveColors.liveGreen
@@ -156,16 +156,14 @@ class StatusSummaryCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text('Start',
-                  style:
-                  TextStyle(color: Colors.white54, fontSize: 11)),
+                  style: TextStyle(color: Colors.white54, fontSize: 11)),
               Text(
-                '$provider.livePassedCount / ${provider.liveStations.length} stations',
+                '${provider.livePassedCount} / ${provider.liveStations.length} stations',
                 style: const TextStyle(
                     color: Colors.white54, fontSize: 11),
               ),
               const Text('End',
-                  style:
-                  TextStyle(color: Colors.white54, fontSize: 11)),
+                  style: TextStyle(color: Colors.white54, fontSize: 11)),
             ],
           ),
           const SizedBox(height: 6),
@@ -185,7 +183,4 @@ class StatusSummaryCard extends StatelessWidget {
       ),
     );
   }
-
-  // ══════════════════════════════════════════════════════════════════
-  //  
 }

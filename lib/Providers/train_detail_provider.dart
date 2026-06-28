@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../models/coach_model.dart';
+
 import '../services/train_detail_service.dart';
 import '../utils/train_utils.dart';
 import 'train_provider.dart';
@@ -30,16 +30,16 @@ class TrainDetailProvider extends ChangeNotifier {
 
   String get trainName =>
       _trainData['trainName']?.toString() ??
-      _trainData['train_name']?.toString() ??
-      'Unknown Train';
+          _trainData['train_name']?.toString() ??
+          'Unknown Train';
 
   String get origin => _trainData['origin']?.toString() ?? '';
   String get destination => _trainData['destination']?.toString() ?? '';
 
   String get trainType =>
       _trainData['trainType']?.toString() ??
-      _trainData['train_type']?.toString() ??
-      '';
+          _trainData['train_type']?.toString() ??
+          '';
 
   String get runningDays {
     final days = _trainData['runningDays'];
@@ -115,31 +115,89 @@ class TrainDetailProvider extends ChangeNotifier {
     return _trainData['duration']?.toString() ?? '--';
   }
 
-  int get currentStationIndex {
+  // ─────────────────────────────────────────────────────────────────
+  // CORE FIX: anchor everything to the API's current_station code.
+  //
+  // The API pre-fills actual_arrival_time / actual_departure_time for
+  // ALL stations (even future ones), so we can't trust those fields
+  // alone to decide whether a station has been passed.
+  //
+  // Strategy:
+  //   1. Find the index of the station whose code matches
+  //      liveStatus['body']['current_station']  ← authoritative source.
+  //   2. Use stnSerialNumber as a fallback ranking.
+  //   3. "current station" means the train is AT that station
+  //      (arrived but not yet departed) OR it is the last departed
+  //      station while the train is between stops.
+  //   4. Only stations with index < currentStationIndex are "passed".
+  // ─────────────────────────────────────────────────────────────────
+
+  /// Index in liveStations of the API's reported current station.
+  /// Returns -1 if not determinable.
+  int get _anchorIndex {
+    final currentCode = liveCurrentStation.trim().toUpperCase();
+    if (currentCode.isEmpty) return -1;
+
     for (int i = 0; i < liveStations.length; i++) {
       final s = liveStations[i] as Map<String, dynamic>;
-      if (TrainUtils.stationHasArrived(s) &&
-          !TrainUtils.stationHasDeparted(s)) {
-        return i;
-      }
+      final code = (s['stationCode']?.toString() ?? '').trim().toUpperCase();
+      if (code == currentCode) return i;
     }
     return -1;
   }
 
+  /// True if the train is currently halted AT the anchor station
+  /// (arrived but not yet departed).
+  bool get isTrainAtStation {
+    final idx = _anchorIndex;
+    if (idx < 0) return false;
+    final s = liveStations[idx] as Map<String, dynamic>;
+    final hasActualArr = _hasValue(s['actual_arrival_time']);
+    final hasActualDep = _hasValue(s['actual_departure_time']);
+    // At station = arrived but NOT yet departed
+    return hasActualArr && !hasActualDep;
+  }
+
+  /// Index of the station where the train currently is (halted).
+  /// Returns -1 if the train is between stations.
+  int get currentStationIndex => isTrainAtStation ? _anchorIndex : -1;
+
+  /// Index of the last station the train has fully departed from.
+  /// When the train is AT a station this is the station before it.
+  /// Returns -1 if the train hasn't departed any station yet.
   int get lastDepartedIndex {
+    if (isTrainAtStation) {
+      // Train is halted: last departed = station before anchor
+      return _anchorIndex - 1;
+    }
+    // Train is between stations: anchor IS the last departed station
+    final idx = _anchorIndex;
+    if (idx >= 0) return idx;
+
+    // Fallback: scan for the last station with an actual departure time
+    // but ONLY up to the first station that has NO actual arrival time,
+    // to avoid trusting pre-filled future times.
     int last = -1;
     for (int i = 0; i < liveStations.length; i++) {
-      if (TrainUtils.stationHasDeparted(liveStations[i] as Map<String, dynamic>)) {
-        last = i;
-      }
+      final s = liveStations[i] as Map<String, dynamic>;
+      if (!_hasValue(s['actual_arrival_time'])) break; // stop at first unpassed station
+      if (_hasValue(s['actual_departure_time'])) last = i;
     }
     return last;
   }
 
-  bool get isTrainAtStation => currentStationIndex >= 0;
-
   int get activeIndex =>
       isTrainAtStation ? currentStationIndex : lastDepartedIndex;
+
+  /// Whether a station at [index] has been passed (train has departed it).
+  /// This is the single source of truth used by RouteTimelineCard.
+  bool stationIsPassed(int index) {
+    // Stations strictly before the anchor are always passed
+    final anchor = _anchorIndex;
+    if (anchor >= 0) return index < anchor;
+    // No anchor: fall back to lastDepartedIndex
+    return index <= lastDepartedIndex;
+  }
 
   double get trainProgressBetweenStations {
     final depIdx = lastDepartedIndex;
@@ -152,7 +210,7 @@ class TrainDetailProvider extends ChangeNotifier {
           depStation['departureTime']?.toString(),
     );
     final arrTime =
-        TrainUtils.parseTime(nextStation['arrivalTime']?.toString());
+    TrainUtils.parseTime(nextStation['arrivalTime']?.toString());
     if (depTime == null || arrTime == null) return 0.5;
     final now = DateTime.now();
     final total = arrTime.difference(depTime).inSeconds;
@@ -185,10 +243,10 @@ class TrainDetailProvider extends ChangeNotifier {
 
   String get liveNextStationName {
     final nextIdx =
-        isTrainAtStation ? currentStationIndex + 1 : lastDepartedIndex + 1;
+    isTrainAtStation ? currentStationIndex + 1 : lastDepartedIndex + 1;
     if (nextIdx >= 0 && nextIdx < liveStations.length) {
       return (liveStations[nextIdx] as Map<String, dynamic>)['stationName']
-              ?.toString() ??
+          ?.toString() ??
           '—';
     }
     return '—';
@@ -196,7 +254,7 @@ class TrainDetailProvider extends ChangeNotifier {
 
   String get liveEtaForNext {
     final nextIdx =
-        isTrainAtStation ? currentStationIndex + 1 : lastDepartedIndex + 1;
+    isTrainAtStation ? currentStationIndex + 1 : lastDepartedIndex + 1;
     if (nextIdx >= 0 && nextIdx < liveStations.length) {
       final s = liveStations[nextIdx] as Map<String, dynamic>;
       return TrainUtils.formatTime(s['arrivalTime']?.toString());
@@ -204,13 +262,27 @@ class TrainDetailProvider extends ChangeNotifier {
     return '—';
   }
 
+  /// Number of stations the train has passed through (departed from).
+  /// Only counts stations up to and including lastDepartedIndex.
   int get livePassedCount {
-    int count = 0;
-    for (final s in liveStations) {
-      if (TrainUtils.stationHasDeparted(s as Map<String, dynamic>)) count++;
-    }
-    return count;
+    final depIdx = lastDepartedIndex;
+    if (depIdx < 0) return 0;
+    return depIdx + 1;
   }
+
+  // ─────────────────────────────────────────────────────────────────
+  // HELPERS
+  // ─────────────────────────────────────────────────────────────────
+
+  bool _hasValue(dynamic raw) {
+    if (raw == null) return false;
+    final s = raw.toString().trim();
+    return s.isNotEmpty && s != '--' && s != 'null';
+  }
+
+  // ─────────────────────────────────────────────────────────────────
+  // INIT / LIFECYCLE
+  // ─────────────────────────────────────────────────────────────────
 
   void init({
     required String trainNumber,
@@ -219,7 +291,6 @@ class TrainDetailProvider extends ChangeNotifier {
     _trainNumber = trainNumber;
     _trainData = Map<String, dynamic>.from(trainData);
     fetchLiveStatus();
-    fetchCoachComposition();
     _startAutoRefresh();
   }
 
@@ -227,7 +298,7 @@ class TrainDetailProvider extends ChangeNotifier {
     _refreshTimer?.cancel();
     _refreshTimer = Timer.periodic(
       const Duration(seconds: 60),
-      (_) => refresh(),
+          (_) => refresh(),
     );
   }
 
@@ -253,33 +324,8 @@ class TrainDetailProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> fetchCoachComposition() async {
-    coachLoading = true;
-    coachError = null;
-    notifyListeners();
-
-    try {
-      final jsonData = await _service.fetchCoachCompositionRaw(_trainNumber);
-
-      if (jsonData['status']?['result'] == 'success') {
-        final coaches = jsonData['body']?['coaches'] as List? ?? [];
-        coachComposition =
-            coaches.map((e) => e as Map<String, dynamic>).toList();
-      } else {
-        coachComposition = fallbackCoachComposition();
-      }
-    } catch (_) {
-      coachComposition = fallbackCoachComposition();
-      coachError = null;
-    }
-
-    coachLoading = false;
-    notifyListeners();
-  }
-
   Future<void> refresh({TrainProvider? trainProvider}) async {
     await fetchLiveStatus();
-    await fetchCoachComposition();
 
     if (trainProvider != null) {
       await trainProvider.fetchTrain(_trainNumber);

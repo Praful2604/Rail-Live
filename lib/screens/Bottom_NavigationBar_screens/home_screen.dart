@@ -340,6 +340,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               decoration: BoxDecoration(
+
                 color: RailLiveColors.primary2.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
               ),

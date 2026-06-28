@@ -136,7 +136,7 @@ class RouteTimelineCard extends StatelessWidget {
               provider.isTrainAtStation ? currentIdx + 1 : lastDepIdx + 1;
               final isNextStation =
                   !isCurrentStation && index == nextIdx;
-              final isPassed = TrainUtils.stationHasDeparted(station);
+              final isPassed = provider.stationIsPassed(index);
               final showTrainOnConnector =
                   !provider.isTrainAtStation && index == lastDepIdx && !isLast;
 

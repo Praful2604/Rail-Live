@@ -6,7 +6,6 @@ import 'package:rail_live/Providers/train_detail_provider.dart';
 import 'package:rail_live/Providers/train_provider.dart';
 import 'package:rail_live/app_constant.dart';
 
-import 'widgets/coach_position_card.dart';
 import 'widgets/live_tracking_card.dart';
 import 'widgets/route_timeline.dart';
 import 'widgets/status_summary_card.dart';
@@ -99,12 +98,6 @@ class _TrainDetailScreenState extends State<TrainDetailScreen>
                         children: [
                           TrainInfoCard(provider: detail),
                           const SizedBox(height: 12),
-                          if (detail.coachComposition.isNotEmpty ||
-                              detail.coachLoading)
-                            CoachPositionCard(provider: detail),
-                          if (detail.coachComposition.isNotEmpty ||
-                              detail.coachLoading)
-                            const SizedBox(height: 12),
                           if (detail.liveLoading)
                             const TrainDetailLoadingCard(),
                           if (!detail.liveLoading && detail.liveError != null)

@@ -127,7 +127,7 @@ class LiveTrackingCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'TRAIN IS CURRENTLY AT / NEAR',
+                        'TRAIN IS CURRENTLY NEAR',
                         style: TextStyle(
                             color: Colors.white54,
                             fontSize: 10,
@@ -220,7 +220,7 @@ class LiveTrackingCard extends StatelessWidget {
                 _trackingStat(
                   icon: Icons.check_circle_outline,
                   label: 'Passed',
-                  value: '$provider.livePassedCount',
+                  value: '${provider.livePassedCount}',
                   color: RailLiveColors.liveGreen,
                 ),
                 _trackingStatDivider(),
@@ -229,7 +229,7 @@ class LiveTrackingCard extends StatelessWidget {
                   label: 'Delay',
                   value: provider.liveIsOnTime
                       ? 'On Time'
-                      : '$provider.liveCurrentDelayText min',
+                      : '${provider.liveCurrentDelayText} min',
                   color: provider.liveIsOnTime
                       ? RailLiveColors.liveGreen
                       : RailLiveColors.warning,
@@ -310,7 +310,4 @@ class LiveTrackingCard extends StatelessWidget {
         height: 32,
         color: Colors.white.withValues(alpha: 0.15));
   }
-
-  // ══════════════════════════════════════════════════════════════════
-  //  
 }
