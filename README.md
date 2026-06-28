@@ -46,11 +46,16 @@ Search by **5-digit train number** or **train name** with instant autocomplete. 
 ### 📡 Live Status & Maps
 Real-time station-by-station tracking with **delay info**, **ETA**, and **interactive maps** powered by `flutter_map`.
 
+<<<<<<< HEAD
 ### 🎫 PNR Status & Alerts
 Look up booking status instantly. View coach position, berth details, and charting status. Receive **push notifications** for PNR changes.
 
 ### 🚃 Coach & Platform Info
 Get precise **coach position** and **platform numbers** for upcoming stations to avoid last-minute rushes.
+=======
+### 🎫 PNR Status
+Look up booking status instantly. View coach position, berth details, and charting status.
+>>>>>>> origin/main
 
 </td>
 <td width="50%" valign="top">
@@ -61,11 +66,16 @@ Browse **nearby restaurants** at upcoming stations. Order food directly to your 
 ### 💬 Train Chat
 Per-train chat rooms powered by **Cloud Firestore** — connect with fellow passengers on your journey.
 
+<<<<<<< HEAD
 ### 🔔 Smart Notifications
 Stay updated with **FCM-powered alerts** for train delays, platform changes, and PNR status updates.
 
 ### 👤 Profile & Orders
 Manage your profile, saved trains, and track your food orders with real-time status updates.
+=======
+### 👤 Profile & Orders
+Manage your profile and track your food orders. Firebase-authenticated with real-time updates.
+>>>>>>> origin/main
 
 </td>
 </tr>
@@ -87,10 +97,15 @@ flowchart LR
     D --> I[Train Details]
     I --> J[Live Status & Map]
     I --> K[Train Chat]
+<<<<<<< HEAD
     I --> N[Coach Position]
     G --> L[Restaurant Details]
     L --> M[Razorpay Payment]
     H --> O[My Orders]
+=======
+    G --> L[Restaurant Details]
+    L --> M[Razorpay Payment]
+>>>>>>> origin/main
 ```
 
 <br/>
@@ -167,6 +182,7 @@ flutterfire configure
 
 | Layer | Package |
 |:---|:---|
+<<<<<<< HEAD
 | **Framework** | Flutter · Dart `^3.12.1` |
 | **State** | [`provider`](https://pub.dev/packages/provider) |
 | **UI Components** | `Material 3` · `PlusJakartaSans` Font |
@@ -177,6 +193,16 @@ flutterfire configure
 | **Database** | Cloud Firestore · `shared_preferences` |
 | **Notifications** | `firebase_messaging` · `flutter_local_notifications` |
 | **Utilities** | `http` · `intl` · `url_launcher` · `flutter_dotenv` |
+=======
+| Framework | Flutter · Dart `^3.12.1` |
+| State | [`provider`](https://pub.dev/packages/provider) |
+| Maps | [`flutter_map`](https://pub.dev/packages/flutter_map) · [`latlong2`](https://pub.dev/packages/latlong2) |
+| Payments | [`razorpay_flutter`](https://pub.dev/packages/razorpay_flutter) |
+| Location | [`geolocator`](https://pub.dev/packages/geolocator) |
+| Auth | [`firebase_auth`](https://pub.dev/packages/firebase_auth) |
+| Database | Cloud Firestore · SharedPreferences |
+| Notifications | [`firebase_messaging`](https://pub.dev/packages/firebase_messaging) |
+>>>>>>> origin/main
 
 <br/>
 
@@ -186,6 +212,7 @@ flutterfire configure
 rail_live/
 │
 ├── 📁 lib/
+<<<<<<< HEAD
 │   ├── 📁 Providers/                # State management (PNR, Station Search, etc.)
 │   ├── 📁 services/                 # API (RapidAPI), Firebase & Notifications
 │   ├── 📁 models/                   # Data models (Train, Restaurant, Order)
@@ -197,6 +224,18 @@ rail_live/
 │       ├── 📁 onboarding_screens/   # Splash & Intro
 │       ├── 📁 Profiles_pages/       # User settings & Profile
 │       ├── 📁 train_details/        # Live status, Coach position, Schedule
+=======
+│   ├── 📁 Providers/                # State management
+│   ├── 📁 services/                 # API & Firebase logic
+│   ├── 📁 models/                   # Data structures
+│   ├── 📁 utils/                    # Helper classes (Coach, Station)
+│   │
+│   └── 📁 screens/
+│       ├── auth_screen.dart
+│       ├── 📁 restaurant/           # Food ordering flow
+│       ├── 📁 onboarding_screens/   
+│       ├── 📁 Profiles_pages/       # Profile & Settings
+>>>>>>> origin/main
 │       └── 📁 Bottom_NavigationBar_screens/
 │           ├── home_screen.dart
 │           ├── tracking_screen.dart
@@ -206,8 +245,12 @@ rail_live/
 │
 └── 📁 assets/
     ├── 📁 data/                     # local trains & stations JSON
+<<<<<<< HEAD
     ├── 📁 logo/                     # App icons & Branding
     └── 📁 onboarding/               # Illustrations
+=======
+    └── 📁 onboarding/               
+>>>>>>> origin/main
 ```
 
 <br/>
